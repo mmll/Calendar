@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatToolbarModule} from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +8,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 })
 export class AppComponent {
   title = 'Calendar';
+
+  direct() {
+    return null;
+  }
 }

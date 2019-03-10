@@ -1,5 +1,6 @@
 
-function calendarHeatmap() {
+export {CalendarHeatmap};
+let CalendarHeatmap = function () {
   // defaults
   var width = 750;
   var height = 110;
