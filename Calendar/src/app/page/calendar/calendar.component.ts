@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import "../../../assets/calendar-heatmap";
 
-@Component({
-  selector: 'app-calendar',
-  templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css']
-})
+declare var calendarHeatmap: any;
+
 const locale = {
   months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
   days: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
@@ -12,7 +10,13 @@ const locale = {
   on: 'on',
   Less: 'Less',
   More: 'More'
-}
+};
+
+@Component({
+  selector: 'app-calendar',
+  templateUrl: './calendar.component.html',
+  styleUrls: ['./calendar.component.css']
+})
 
 export class CalendarComponent implements OnInit {
   private chart1;
