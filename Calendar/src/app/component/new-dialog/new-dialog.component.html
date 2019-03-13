@@ -1,6 +1,18 @@
 <h2 mat-dialog-title>New Project</h2>
-<mat-dialog-content></mat-dialog-content>
+<mat-dialog-content>
+  <div class="dialog_content">
+    <form [formGroup]="newProjectForm">
+      <mat-form-field>
+        <input matInput placeholder="Enter the title" [formControl]="title" required/>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="Description" [formControl]="description"></textarea>
+      </mat-form-field>
+    </form>
+    <!--<button mat-raised-button color="primary" (click)="uploadCover()">Upload</button>-->
+  </div>
+</mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Yes</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial [disabled]="!title.valid" (click)="createProject()">Yes</button>
 </mat-dialog-actions>

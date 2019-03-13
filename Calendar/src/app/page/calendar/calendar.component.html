@@ -1,1 +1,19 @@
-<div id="calendar"></div>
+<div style="height:1vh">
+<mat-grid-list cols="4">
+  <mat-grid-tile [colspan]="3" [rowspan]="1" class="calendar-tile" >
+  <h1> {{project.title}}</h1>
+    <span>{{project.description}}</span>
+    <mat-form-field>
+      <textarea matInput placeholder="Record something" [formControl]="comment"></textarea>
+    </mat-form-field>
+    <button mat-fab color="accent">Check</button>
+  </mat-grid-tile>
+  <mat-grid-tile [rowspan]="2" [colspan]="1" >
+   <div>Today is : {{date}}</div>
+    <div>status</div>
+  </mat-grid-tile>
+  <mat-grid-tile [rowspan]="1" [colspan]="3" >
+    <div id="calendar"></div>
+  </mat-grid-tile>
+</mat-grid-list>
+</div>

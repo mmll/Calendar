@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
   openDialog(){
-    const dialogRef = this.dialog.open(NewDialogComponent)
+    const dialogRef = this.dialog.open(NewDialogComponent,{width: '50vw',})
     dialogRef.afterClosed().subscribe(()=>{
 
     })

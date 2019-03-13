@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import "../../../assets/calendar-heatmap";
+import {Project} from '../../entity/project';
+import {FormControl} from '@angular/forms';
 
 declare var calendarHeatmap: any;
 
@@ -20,9 +22,16 @@ const locale = {
 
 export class CalendarComponent implements OnInit {
   private chart1;
+  private project: Project;
+  private comment;
+  private date;
   constructor() { }
 
   ngOnInit() {
+    this.project = new Project('test title',"test description", "test cover url");
+    this.comment = new FormControl();
+    let today = new Date();
+    this.date = today.getFullYear()+'-'+today.getMonth()+'-'+today.getDay();
     const chartData = [{
       date: new Date(2018, 11, 12),
       count: 1
