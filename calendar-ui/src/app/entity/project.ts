@@ -26,8 +26,8 @@ export class Project{
     this._coverUrl = value;
   }
   constructor(title, description, coverUrl){
-    this.title = title;
-    this.description = description;
-    this.coverUrl = coverUrl;
+    this._title = title;
+    this._description = description;
+    this._coverUrl = coverUrl;
   }
 }

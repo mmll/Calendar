@@ -15,6 +15,7 @@ import { CalendarComponent } from './page/calendar/calendar.component';
 import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { NewDialogComponent } from './component/new-dialog/new-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatGridListModule
+    MatGridListModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

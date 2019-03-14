@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProjectService} from '../../service/project.service';
+import {Project} from '../../entity/project';
 
 @Component({
   selector: 'app-new-dialog',
@@ -9,18 +10,24 @@ import {ProjectService} from '../../service/project.service';
 })
 export class NewDialogComponent implements OnInit {
   private projectService: ProjectService
-  private title;
-  private description;
-  constructor() {
-    this.title = new FormControl("");
-    this.description = new FormControl("");
+  private formGroup;
+  constructor(projectService: ProjectService) {
+    this.formGroup = new FormGroup({
+      title:new FormControl("",[Validators.required,]),
+      description: new FormControl("")
+    });
+    this.projectService = projectService;
   }
 
   ngOnInit() {
   }
 
   createProject(){
-    this.projectService.updateProject();
+    let project = new Project(this.formGroup.get("title").value, this.formGroup.get("description").value, 'test');
+    this.projectService.createProject(project)
+      .subscribe(resp =>{
+
+      });
 
   }
 }
