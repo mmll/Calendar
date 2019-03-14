@@ -7,7 +7,7 @@ import com.calendar.entity.Project;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value="/project")
+@RequestMapping("/project")
 public class ProjectController {
     private ProjectRepository repository;
 
@@ -15,7 +15,7 @@ public class ProjectController {
         this.repository = repository;
     }
 
-    @RequestMapping(value="/project", method = RequestMethod.POST)
+    @PostMapping
     public Project createProject(@RequestBody Project project){
         project.setUserId("test");
         repository.save(project);

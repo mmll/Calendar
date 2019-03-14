@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProjectService {
-  configUrl = "localhost:8080";
+  configUrl = "http://localhost:8080";
   constructor(private http: HttpClient) {
     this.http = http;
   }

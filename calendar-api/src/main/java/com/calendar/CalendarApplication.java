@@ -5,10 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-//@ComponentScan({"com.emc.ecs.sizetool.config",
-//        "com.emc.ecs.sizetool.controller",
-//        "com.emc.ecs.sizetool.dao",
-//        "com.emc.ecs.sizetool.service"})
+@ComponentScan({
+        "com.calendar.controller",
+        "com.calendar.config",
+        "com.calendar.entity",
+        "com.calendar.repository"})
 public class CalendarApplication {
 
     public static void main(String[] args) {
