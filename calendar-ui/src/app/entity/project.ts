@@ -1,9 +1,9 @@
 export class Project{
-  private title;
+  private projectName;
   private description;
   private coverUrl;
   constructor(title, description, coverUrl){
-    this.title = title;
+    this.projectName = title;
     this.description = description;
     this.coverUrl = coverUrl;
   }

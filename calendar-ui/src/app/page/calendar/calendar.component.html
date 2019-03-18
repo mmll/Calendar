@@ -1,7 +1,7 @@
 <div style="height:1vh">
 <mat-grid-list cols="4">
   <mat-grid-tile [colspan]="3" [rowspan]="1" class="calendar-tile" >
-  <h1> {{project.title}}</h1>
+  <h1> {{project.projectName}}</h1>
     <span>{{project.description}}</span>
     <mat-form-field>
       <textarea matInput placeholder="Record something" [formControl]="comment"></textarea>

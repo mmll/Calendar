@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import "../../../assets/calendar-heatmap";
 import {Project} from '../../entity/project';
 import {FormControl} from '@angular/forms';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import {switchMap} from 'rxjs/operators';
+import {CalendarService} from '../../service/calendar.service';
+import {ProjectService} from '../../service/project.service';
 
 declare var calendarHeatmap: any;
 
@@ -25,9 +29,21 @@ export class CalendarComponent implements OnInit {
   private project: Project;
   private comment;
   private date;
-  constructor() { }
+  private projectId;
+  constructor(private route:ActivatedRoute, private calendarService: CalendarService, private projectService: ProjectService) {
+    this.route = route;
+    this.calendarService = calendarService;
+    this.projectService = projectService;
+  }
 
   ngOnInit() {
+    this.projectId = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this.projectId = params.get('id')
+      ));
+    this.projectService.getProjectByName(this.projectId).subscribe(res=>{
+      this.project = res;
+    })
     this.project = new Project('test title',"test description", "test cover url");
     this.comment = new FormControl();
     let today = new Date();

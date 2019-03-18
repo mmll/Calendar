@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.calendar.entity.Project;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.*;
+
 @RestController
 @RequestMapping("/project")
 public class ProjectController {
@@ -21,4 +23,17 @@ public class ProjectController {
         repository.save(project);
         return project;
     }
+    @GetMapping
+    public List<Project> getAllProject(){
+        List<Project> results = repository.findAll();
+        return results;
+    }
+
+    @GetMapping("/{id}")
+    public Project getProjectById(@PathVariable("id")String id){
+        Project result = repository.findByProjectName(id);
+        return result;
+    }
+
+
 }

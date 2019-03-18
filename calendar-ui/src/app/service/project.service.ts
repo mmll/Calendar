@@ -10,7 +10,16 @@ export class ProjectService {
   constructor(private http: HttpClient) {
     this.http = http;
   }
+
   createProject(project: Project){
     return this.http.post(this.configUrl+"/project", project);
+  }
+
+  getAllProject(){
+    return this.http.get(this.configUrl+"/project");
+  }
+
+  getProjectByName(projectName:String){
+    return this.http.get(this.configUrl+"/project"+"/"+projectName)
   }
 }
