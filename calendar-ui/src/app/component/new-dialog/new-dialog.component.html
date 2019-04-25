@@ -9,10 +9,11 @@
         <textarea matInput placeholder="Description" formControlName="description"></textarea>
       </mat-form-field>
     </form>
-    <!--<button mat-raised-button color="primary" (click)="uploadCover()">Upload</button>-->
+      <input type="file" #file accept="image/png, image/jpeg" (change)="preview(file.files)" />
+      <img id="blah" *ngIf="imageSrc" [src]="imageSrc" alt="your image" class="image"/>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="createProject()">Yes</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="createProject()" [disabled]="!formGroup.get('title').value">Yes</button>
 </mat-dialog-actions>

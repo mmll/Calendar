@@ -1,16 +1,18 @@
-<button mat-raised-button color="primary" (click)="openDialog()">Add Project</button>
-<div style="text-align:center" class="main-content">
-  <mat-card class="mat-card" *ngFor="let item of projects">
-    <mat-card-header>
-      <mat-card-title>{{item.projectName}}</mat-card-title>
-    </mat-card-header>
-    <a routerLink="/calendar/{{item.projectName}}">
-      <img mat-card-image src="../../../assets/image/tsconfig.jpeg" alt="">
-    </a>
-    <mat-card-content>
-      <p>
-        Testing
-      </p>
-    </mat-card-content>
-  </mat-card>
+<div class="container">
+	<button mat-raised-button color="primary" class="btn" (click)="openDialog()">Add Project</button>
+	<div style="text-align:center" class="main-content">
+		<mat-card class="mat-card" *ngFor="let item of projects">
+			<mat-card-header>
+				<mat-card-title>{{item.projectName}}</mat-card-title>
+			</mat-card-header>
+			<a routerLink="/calendar/{{item.projectName}}">
+				<img mat-card-image src="../../../assets/image/tsconfig.jpeg" alt="">
+			</a>
+			<mat-card-content>
+				<p>
+					{{item.description}}
+				</p>
+			</mat-card-content>
+		</mat-card>
+	</div>
 </div>

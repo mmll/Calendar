@@ -20,6 +20,6 @@ export class ProjectService {
   }
 
   getProjectByName(projectName:String){
-    return this.http.get(this.configUrl+"/project"+"/"+projectName)
+    return this.http.get<Project>(this.configUrl+"/project"+"/"+projectName)
   }
 }

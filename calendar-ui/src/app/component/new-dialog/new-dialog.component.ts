@@ -11,23 +11,34 @@ import {Project} from '../../entity/project';
 export class NewDialogComponent implements OnInit {
   private projectService: ProjectService
   private formGroup;
+  private imageSrc: any;
   constructor(projectService: ProjectService) {
     this.formGroup = new FormGroup({
       title:new FormControl("",[Validators.required,]),
-      description: new FormControl("")
+      description: new FormControl(""),
     });
     this.projectService = projectService;
   }
-
   ngOnInit() {
+
   }
 
   createProject(){
-    let project = new Project(this.formGroup.get("title").value, this.formGroup.get("description").value, 'test');
+    let project = new Project(this.formGroup.get("title").value, this.formGroup.get("description").value, this.imageSrc);
     this.projectService.createProject(project)
       .subscribe(resp =>{
-
       });
+
+  }
+
+  preview(files: any): void {
+    if (files.length === 0)
+      return;
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = () => {
+      this.imageSrc = reader.result;
+    }
 
   }
 }
