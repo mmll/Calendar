@@ -2,10 +2,11 @@ package com.calendar.controller;
 
 
 import com.calendar.repository.*;
-import com.sun.tools.javac.util.List;
+import com.calendar.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.calendar.entity.Project;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.*;
 
@@ -13,6 +14,8 @@ import java.util.*;
 @RequestMapping("/project")
 public class ProjectController {
     private ProjectRepository repository;
+    @Autowired
+    private FileStorageService fileStorageService;
 
     public ProjectController(ProjectRepository repository) {
         this.repository = repository;
@@ -20,6 +23,11 @@ public class ProjectController {
     @PostMapping
     public Project createProject(@RequestBody Project project){
         project.setUserId("test");
+        String fileName = fileStorageService.storeFile(project.getCoverFile());
+        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/downloadFile/")
+                .path(fileName)
+                .toUriString();
         repository.save(project);
         return project;
     }

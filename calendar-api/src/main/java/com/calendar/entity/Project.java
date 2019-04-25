@@ -1,21 +1,24 @@
 package com.calendar.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
 @Document(collection="project")
 public class Project {
     @Id
-    public String id;
+    private String id;
 
-    public String projectName;
-    public String userId;
-    public String description;
-    public String coverUrl;
+    private String projectName;
+    private String userId;
+    private String description;
+    private String coverUrl;
+    private MultipartFile coverFile;
 
-    public Date createdTime;
-    public Date updateTime;
+
+    private Date createdTime;
+    private Date updateTime;
 
     public Project(String projectName, String description, String coverUrl){
         this.projectName = projectName;
@@ -80,6 +83,15 @@ public class Project {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+    public MultipartFile getCoverFile() {
+        return coverFile;
+    }
+
+    public void setCoverFile(MultipartFile coverFile) {
+        this.coverFile = coverFile;
+    }
+
 
     @Override
     public String toString(){

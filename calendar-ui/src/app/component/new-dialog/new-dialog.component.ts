@@ -12,6 +12,7 @@ export class NewDialogComponent implements OnInit {
   private projectService: ProjectService
   private formGroup;
   private imageSrc: any;
+  private fileToUpload: File = null;
   constructor(projectService: ProjectService) {
     this.formGroup = new FormGroup({
       title:new FormControl("",[Validators.required,]),
@@ -24,7 +25,7 @@ export class NewDialogComponent implements OnInit {
   }
 
   createProject(){
-    let project = new Project(this.formGroup.get("title").value, this.formGroup.get("description").value, this.imageSrc);
+    let project = new Project(this.formGroup.get("title").value, this.formGroup.get("description").value, this.fileToUpload);
     this.projectService.createProject(project)
       .subscribe(resp =>{
       });
@@ -36,6 +37,7 @@ export class NewDialogComponent implements OnInit {
       return;
     const reader = new FileReader();
     reader.readAsDataURL(files[0]);
+    this.fileToUpload = files[0];
     reader.onload = () => {
       this.imageSrc = reader.result;
     }
