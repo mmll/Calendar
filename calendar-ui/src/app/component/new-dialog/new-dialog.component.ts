@@ -25,8 +25,8 @@ export class NewDialogComponent implements OnInit {
   }
 
   createProject(){
-    let project = new Project(this.formGroup.get("title").value, this.formGroup.get("description").value, this.fileToUpload);
-    this.projectService.createProject(project)
+    let project = new Project(this.formGroup.get("title").value, this.formGroup.get("description").value, "");
+    this.projectService.createProject(project,this.fileToUpload)
       .subscribe(resp =>{
       });
 

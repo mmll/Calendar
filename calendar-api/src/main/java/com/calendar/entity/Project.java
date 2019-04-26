@@ -14,7 +14,6 @@ public class Project {
     private String userId;
     private String description;
     private String coverUrl;
-    private MultipartFile coverFile;
 
 
     private Date createdTime;
@@ -82,14 +81,6 @@ public class Project {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public MultipartFile getCoverFile() {
-        return coverFile;
-    }
-
-    public void setCoverFile(MultipartFile coverFile) {
-        this.coverFile = coverFile;
     }
 
 

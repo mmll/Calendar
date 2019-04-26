@@ -14,7 +14,9 @@ import org.springframework.context.annotation.ComponentScan;
         "com.calendar.controller",
         "com.calendar.config",
         "com.calendar.entity",
-        "com.calendar.repository"})
+        "com.calendar.repository",
+        "com.calendar.service",
+        "com.calendar.exception",})
 public class CalendarApplication {
 
     public static void main(String[] args) {

@@ -4,6 +4,7 @@ import com.calendar.property.FileStorageProperties;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,10 +14,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.logging.Logger;
 
 @Service
+@Transactional
 public class FileStorageService {
     private Path fileStorageLocation;
+    private Logger log;
 
     public FileStorageService(FileStorageProperties fileStorageProperties) {
         this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir()).toAbsolutePath().normalize();
@@ -27,18 +31,20 @@ public class FileStorageService {
         }
     }
 
-    public String storeFile(MultipartFile file){
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+    public String storeFile(MultipartFile file, String fileNameOriginal){
+        String fileName = StringUtils.cleanPath(fileNameOriginal);
         try{
             if(fileName.contains("..")){
                 //throw  new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
             }
-            Path targetLOcation = this.fileStorageLocation.resolve(fileName);
-            Files.copy(file.getInputStream(), targetLOcation, StandardCopyOption.REPLACE_EXISTING);
+            Path targetLocation = this.fileStorageLocation.resolve(fileName);
+            Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+            //log.info("store file successfully");
             return fileName;
         } catch (IOException ex){
             //throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
-            return "";
+            //log.info("could not store file");
+            return null;
         }
     }
 

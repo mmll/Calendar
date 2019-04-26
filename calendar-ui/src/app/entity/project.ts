@@ -7,4 +7,15 @@ export class Project{
     this.description = description;
     this.coverUrl = coverUrl;
   }
+  getProjectName(){
+    return this.projectName;
+  }
+
+  getDescription(){
+    return this.description;
+  }
+
+  getCoverUrl(){
+    return this.coverUrl;
+  }
 }

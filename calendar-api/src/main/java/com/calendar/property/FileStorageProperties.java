@@ -7,7 +7,7 @@ public class FileStorageProperties {
     private String uploadDir;
 
     public String getUploadDir() {
-        return uploadDir;
+        return "uploads";
     }
 
     public void setUploadDir(String uploadDir) {
