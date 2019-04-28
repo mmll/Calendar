@@ -14,8 +14,6 @@ public class Project {
     private String userId;
     private String description;
     private String coverUrl;
-
-
     private Date createdTime;
     private Date updateTime;
 
@@ -87,8 +85,8 @@ public class Project {
     @Override
     public String toString(){
         return String.format(
-                "Project[id=%s, projectName=%s, userId=%, description=%s, cover=%s, createdTime=%s, updateTime=%s]",
-                id, projectName, userId, coverUrl, createdTime, updateTime
+                "Project[id=%s, projectName=%s, userId=%, description=%s, createdTime=%s, updateTime=%s]",
+                id, projectName, userId, description, createdTime, updateTime
         );
     }
 }
