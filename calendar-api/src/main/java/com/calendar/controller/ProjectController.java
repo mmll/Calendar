@@ -5,7 +5,7 @@ import com.calendar.repository.*;
 import com.calendar.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.calendar.entity.Project;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +27,11 @@ public class ProjectController {
     }
 
     @PostMapping
-    public Project createProject(@RequestParam  Project project, @RequestParam  MultipartFile file){
-        project.setUserId("test");
+    public ResponseEntity createProject(@ModelAttribute Project project){
+        if(repository.findByProjectName(project.getProjectName())!= null){
+            return new ResponseEntity("Project Name Existed",HttpStatus.OK);
+        }
+        MultipartFile file  = project.getCoverFile();
         if(file!= null){
             String fileName = fileStorageService.storeFile(file, project.getProjectName());
             String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -36,9 +39,9 @@ public class ProjectController {
                     .path(fileName)
                     .toUriString();
         }
-        project.setCoverUrl(project.getProjectName());
+        project.setCoverFile(null);
         repository.save(project);
-        return project;
+        return new ResponseEntity(project, HttpStatus.OK);
     }
     @GetMapping
     public List<Project> getAllProject(){
@@ -50,5 +53,11 @@ public class ProjectController {
     public Project getProjectById(@PathVariable("id")String id){
         Project result = repository.findByProjectName(id);
         return result;
+    }
+
+    @GetMapping("/cover/{fileName}")
+    public ResponseEntity getCoverFile(@PathVariable("fileName") String fileName){
+        Resource resource = fileStorageService.loadFileAsResource(fileName);
+        return new ResponseEntity(resource, HttpStatus.OK);
     }
 }

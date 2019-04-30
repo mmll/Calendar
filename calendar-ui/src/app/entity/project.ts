@@ -1,11 +1,11 @@
 export class Project{
   private projectName;
   private description;
-  private coverUrl;
-  constructor(title, description, coverUrl){
+  private coverFile: string| Blob;
+  constructor(title, description, coverFile){
     this.projectName = title;
     this.description = description;
-    this.coverUrl = coverUrl;
+    this.coverFile = coverFile;
   }
   getProjectName(){
     return this.projectName;
@@ -15,7 +15,7 @@ export class Project{
     return this.description;
   }
 
-  getCoverUrl(){
-    return this.coverUrl;
+  getCoverFile(){
+    return this.coverFile;
   }
 }

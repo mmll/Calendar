@@ -11,10 +11,12 @@ export class ProjectService {
     this.http = http;
   }
 
-  createProject(project: Project, file: File){
+  createProject(project: Project){
     const formData = new FormData();
-    formData.append('coverFile', file);
-    return this.http.post(this.configUrl+"/project", [project, formData]);
+    formData.append('projectName', project.getProjectName());
+    formData.append('description', project.getDescription());
+    formData.append('coverFile', project.getCoverFile());
+    return this.http.post(this.configUrl+"/project", formData,{responseType: 'text'});
   }
 
   getAllProject(){

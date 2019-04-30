@@ -23,7 +23,14 @@ export class DashboardComponent implements OnInit {
   }
   openDialog(){
     const dialogRef = this.dialog.open(NewDialogComponent,{width: '50vw',})
+    const sub = dialogRef.componentInstance.onAdd.subscribe(() => {
+	    dialogRef.close();
+	    this.projectService.getAllProject().subscribe(res=>{
+		    this.projects = res;
+	    })
+    });
     dialogRef.afterClosed().subscribe(()=>{
+
     })
   }
 
