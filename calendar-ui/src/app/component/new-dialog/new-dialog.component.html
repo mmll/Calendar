@@ -9,7 +9,8 @@
         <textarea matInput placeholder="Description" formControlName="description"></textarea>
       </mat-form-field>
     </form>
-      <input type="file" #file accept="image/png, image/jpeg" (change)="preview(file.files)" />
+      <input type="file" id="file" #file accept="image/png, image/jpeg" (change)="preview(file.files)" class="file-btn" />
+      <label for="file">Choose a file</label>
       <img id="blah" *ngIf="imageSrc" [src]="imageSrc" alt="your image" class="image"/>
   </div>
 </mat-dialog-content>

@@ -16,22 +16,26 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.projectService.getAllProject().subscribe(res=>{
-        this.projects = res;
-    })
-    
+    this.projectService.getAllProject().subscribe(res => {
+      this.projects = res;
+      this.projects.forEach( project => {
+	       project.image = 'http://localhost:8080' + '/project/cover/' + project.projectName;
+        // this.projectService.getCoverByName(project.projectName).subscribe( response => {
+        //   project.image = response;
+        //   });
+        });
+    });
   }
-  openDialog(){
-    const dialogRef = this.dialog.open(NewDialogComponent,{width: '50vw',})
+
+  openDialog() {
+    const dialogRef = this.dialog.open(NewDialogComponent, { width: '50vw'})
     const sub = dialogRef.componentInstance.onAdd.subscribe(() => {
 	    dialogRef.close();
-	    this.projectService.getAllProject().subscribe(res=>{
-		    this.projects = res;
-	    })
+	    this.ngOnInit();
     });
-    dialogRef.afterClosed().subscribe(()=>{
 
-    })
+    dialogRef.afterClosed().subscribe(() => {
+    });
   }
 
 }

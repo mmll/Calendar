@@ -7,11 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.calendar.entity.Project;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.IOException;
 import java.util.*;
 
 @RestController
@@ -56,8 +59,9 @@ public class ProjectController {
     }
 
     @GetMapping("/cover/{fileName}")
-    public ResponseEntity getCoverFile(@PathVariable("fileName") String fileName){
+    public ResponseEntity getCoverFile(@PathVariable("fileName") String fileName) throws IOException {
         Resource resource = fileStorageService.loadFileAsResource(fileName);
-        return new ResponseEntity(resource, HttpStatus.OK);
+        byte[] bytes = StreamUtils.copyToByteArray(resource.getInputStream());
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(bytes);
     }
 }

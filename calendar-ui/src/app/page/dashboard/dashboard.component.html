@@ -5,10 +5,10 @@
 			<mat-card-header>
 				<mat-card-title>{{item.projectName}}</mat-card-title>
 			</mat-card-header>
-			<a routerLink="/calendar/{{item.projectName}}">
-				<img mat-card-image src="/project/{{item.projectName}}.jpeg" alt="">
-			</a>
 			<mat-card-content>
+				<a routerLink="/calendar/{{item.projectName}}">
+					<img mat-card-image class="card-image" [src]='item.image' alt="">
+				</a>
 				<p>
 					{{item.description}}
 				</p>

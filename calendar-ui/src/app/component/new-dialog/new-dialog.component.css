@@ -7,3 +7,25 @@
 .warning-message{
   color: rgba(214, 5, 25, 0.91);
 }
+.file-btn{
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+.file-btn + label {
+  font-size: 14px;
+  color: white;
+  background-color: #3f51b5;
+  display: inline-block;
+  padding: 0 16px;
+  cursor: pointer;
+  line-height: 36px;
+  border-radius: 4px;
+}
+
+.file-btn:focus + label,
+.file-btn + label:hover {
+  color: #dedede;
+}

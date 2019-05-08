@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Project} from '../entity/project';
 import {HttpClient} from '@angular/common/http';
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +21,14 @@ export class ProjectService {
   }
 
   getAllProject(){
-    return this.http.get(this.configUrl+"/project");
+    return this.http.get(this.configUrl + '/project');
   }
 
-  getProjectByName(projectName:String){
-    return this.http.get<Project>(this.configUrl+"/project"+"/"+projectName)
+  getProjectByName(projectName: String) {
+    return this.http.get<Project>(this.configUrl + '/project/' + projectName);
+  }
+
+	getCoverByName(projectName: String): Observable<any> {
+    return this.http.get( this.configUrl + '/project/cover/' + projectName);
   }
 }
