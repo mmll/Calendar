@@ -8,7 +8,6 @@ import {CalendarService} from '../../service/calendar.service';
 import {ProjectService} from '../../service/project.service';
 import {of} from "rxjs";
 import {CalendarItem} from "../../entity/calendarItem";
-import {TIMEOUT} from "dns";
 
 declare var calendarHeatmap: any;
 
@@ -69,7 +68,7 @@ export class CalendarComponent implements OnInit {
 						this.todayItem = new CalendarItem(item.projectName, item.date, item.content, item.checked);
 						this.todayItem.setId(item.id);
 					}
-					this.chartData.push({data: new Date(date), count: 5})
+					this.chartData.push({date: new Date(date), count: 5})
 				});
 
 

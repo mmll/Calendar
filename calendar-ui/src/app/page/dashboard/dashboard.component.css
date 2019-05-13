@@ -9,18 +9,33 @@
   width: 20%;
   margin: auto;
 }
+
 .btn{
   margin: 1rem 2rem 1rem;
 }
+
 mat-card.mat-card.mat-card{
   margin-top: 20px;
   padding-top: 6px;
 }
+
 mat-card-content.mat-card-content {
   margin-top: 4px;
 }
+
 .mat-card-title{
   font-weight: inherit;
   color: #666565db;
   line-height: 1.5;
+}
+.right-btn{
+  float: right;
+}
+
+mat-card-header.mat-card-header{
+  justify-content: space-between;
+}
+
+button.right-btn.mat-button{
+  margin-bottom: 1em;
 }

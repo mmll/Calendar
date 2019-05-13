@@ -4,6 +4,7 @@
 		<mat-card class="mat-card" *ngFor="let item of projects">
 			<mat-card-header>
 				<mat-card-title>{{item.projectName}}</mat-card-title>
+				<button mat-button class="right-btn"><mat-icon>delete</mat-icon></button>
 			</mat-card-header>
 			<mat-card-content>
 				<a routerLink="/calendar/{{item.projectName}}">
@@ -13,6 +14,9 @@
 					{{item.description}}
 				</p>
 			</mat-card-content>
+			<mat-card-actions>
+
+			</mat-card-actions>
 		</mat-card>
 	</div>
 </div>

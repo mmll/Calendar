@@ -13,6 +13,7 @@ public class Project {
     private String projectName;
     private String userId;
     private String description;
+
     private String coverUrl;
     private Date createdTime;
     private Date updateTime;
